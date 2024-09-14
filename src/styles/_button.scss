@@ -1,7 +1,26 @@
 button {
   color: var(--color-text2);
+}
 
-  &:hover {
-    color: var(--color-text);
+.btn {
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  border: 0.125 solid transparent;
+  border-radius: 2rem;
+
+  &-primary {
+    color: var(--color-base);
+    background-color: var(--color-primary);
+  }
+
+  &-secondary {
+    border-color: var(--color-skeleton);
+  }
+
+  &:hover,
+  &:active {
+    opacity: .9;
   }
 }

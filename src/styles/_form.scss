@@ -1,0 +1,11 @@
+.form {
+  &-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    label {
+      margin-left: .5rem;
+    }
+  }
+}
