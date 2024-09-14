@@ -1,6 +1,8 @@
 import { NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IGame } from '../../models/game.interface';
+import { GameService } from '../../services/game.service';
 
 @Component({
   standalone: true,
@@ -11,6 +13,8 @@ export class RegisterComponent implements OnInit {
   protected formGame!: FormGroup;
 
   private _formBuilder = inject(FormBuilder);
+  private _gameService = inject(GameService);
+  private _game?: IGame;
 
   ngOnInit(): void {
     this._createForm();
@@ -29,13 +33,31 @@ export class RegisterComponent implements OnInit {
 
   protected onSubmit() {
     if (this.formGame.valid) {
-      console.log(this.formGame.value);
-
-      this.formGame!.reset();
+      this.formatGame();
     }
+  }
+
+  private formatGame() {
+    this._game = {
+      name: this.formGame.get('name')?.value,
+      price: this.formGame.get('price')?.value,
+      cover: this.formGame.get('cover')?.value,
+      dimension: {
+        width: this.formGame.get('width')?.value,
+        height: this.formGame.get('height')?.value,
+        length: this.formGame.get('length')?.value
+      }
+    }
+
+    // this._gameService.saveGame(this.formGame.value);
+    this.formGame!.reset();
   }
 
   protected cancelForm() {
     this.formGame!.reset();
+  }
+
+  get imagePreview(): string {
+    return this.formGame.get('cover')?.value;
   }
 }
