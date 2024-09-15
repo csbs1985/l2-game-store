@@ -25,23 +25,25 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       price: ['', Validators.required],
       cover: ['', Validators.required],
-      width: ['', Validators.required],
-      height: ['', Validators.required],
-      length: ['', Validators.required],
+      descrition: ['', Validators.required],
+      width: ['0.135', Validators.required],
+      height: ['0.170', Validators.required],
+      length: ['0.14', Validators.required],
     })
   }
 
-  protected onSubmit() {
+  protected onSubmit(): void {
     if (this.formGame.valid) {
       this.formatGame();
     }
   }
 
-  private formatGame() {
+  private async formatGame(): Promise<void> {
     this._game = {
       name: this.formGame.get('name')?.value,
       price: this.formGame.get('price')?.value,
       cover: this.formGame.get('cover')?.value,
+      descrition: this.formGame.get('descrition')?.value,
       dimension: {
         width: this.formGame.get('width')?.value,
         height: this.formGame.get('height')?.value,
@@ -49,15 +51,15 @@ export class RegisterComponent implements OnInit {
       }
     }
 
-    // this._gameService.saveGame(this.formGame.value);
+    await this._gameService.saveGame(this._game);
     this.formGame!.reset();
   }
 
-  protected cancelForm() {
+  protected cancelForm(): void {
     this.formGame!.reset();
   }
 
   get imagePreview(): string {
-    return this.formGame.get('cover')?.value;
+    return this.formGame.get('cover')?.value || "";
   }
 }
