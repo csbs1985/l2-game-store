@@ -1,19 +1,26 @@
-<section class="max-w-screen-2xl m-auto">
+<section class="max-w-screen-2xl m-auto pt-10">
+  <div class="flex flex-col gap-4 p-4">
+    <h2 class="text-4xl font-extrabold">Descubra algo novo</h2>
+  </div>
+
   <article class="flex gap-4 gap-y-16 p-4 flex-wrap justify-start">
     @for (product of products$ | async; track product) {
-    <div class="flex flex-col">
-      <figure>
-        <img [src]="product.cover" class="aspect-[3:4] bg-cover bg-skeleton rounded-lg"
-          alt="{{ product.name }}" />
-      </figure>
+    <div class="flex flex-col justify-between w-1/6 ">
+      <div class="flex flex-col gap-4 h-full">
+        <figure>
+          <img [src]="product.cover" class="aspect-[3:4] bg-cover bg-skeleton rounded-lg" alt="{{ product.name }}" />
+        </figure>
 
-      <div class="flex flex-col gap-4 py-4">
         <div class="flex flex-col gap-2">
           <p class="text-sm text-gray-400">{{ product.description }}</p>
           <p>{{ product.name }}</p>
         </div>
+      </div>
 
-        <div class="text-xl"> {{ product.price | currency : "BRL"}} </div>
+      <div class="flex flex-col gap-4 py-4">
+        <div class="text-xl">
+          {{ product.price > 0 ? (product.price | currency : "BRL") : 'Gratis' }}
+        </div>
 
         <button class="btn btn-primary w-fit" (click)="addProductToCart(product)">
           Adicionar ao carrinho

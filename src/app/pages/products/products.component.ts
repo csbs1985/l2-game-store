@@ -1,4 +1,4 @@
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { IProduct } from 'src/app/models/product.interface';
 import { CartService } from 'src/app/services/cart.service';
@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/products.service';
   selector: 'rsm-products',
   templateUrl: './products.component.html',
   standalone: true,
-  imports: [AsyncPipe, CurrencyPipe]
+  imports: [AsyncPipe, CurrencyPipe, NgIf]
 })
 export class ProductsComponent {
   private _cartService = inject(CartService);

@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
 
   private async formatProduct(): Promise<void> {
     this._product = {
+      id: Math.floor(Math.random() * 91) + 10,
       name: this.formProduct.get('name')?.value,
       price: parseFloat(this.formProduct.get('price')?.value),
       cover: this.formProduct.get('cover')?.value,
@@ -58,14 +59,30 @@ export class RegisterComponent implements OnInit {
     await this.createProduct();
   }
 
-  createProduct() {
+  private createProduct(): void {
     this._productService.create(this._product as IProduct).subscribe({
-      next: () => this.msgSuccess = true,
-      error: () => this.msgError = true,
+      error: () => this.createProductError(),
+      next: () => this.createProductSuccess(),
     });
 
     setInterval(() => {
       this.cancelForm();
+    }, 3000);
+  }
+
+  private createProductSuccess(): void {
+    this.msgSuccess = true;
+
+    setInterval(() => {
+      this.cancelForm();
+    }, 3000);
+  }
+
+  private createProductError(): void {
+    this.msgError = true;
+
+    setInterval(() => {
+      this.msgError = false;
     }, 3000);
   }
 

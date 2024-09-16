@@ -1,7 +1,7 @@
 import { IDimension } from "./dimension.interface";
 
 export interface IProduct {
-  id?: string;
+  id: number;
   name: string;
   price: number;
   cover: string;
