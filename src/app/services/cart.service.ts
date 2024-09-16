@@ -6,7 +6,6 @@ import { IProduct } from '../models/product.interface';
   providedIn: 'root'
 })
 export class CartService {
-
   cartItems = signal<ICartItem[]>([]);
 
   cartCount = computed(() => this.cartItems().reduce((acc, curr) => acc + curr.quantity, 0));
