@@ -13,19 +13,22 @@ export class DeliveryService {
         id: 1,
         height: 30,
         width: 40,
-        length: 80
+        length: 80,
+        description: 'Pequena'
       },
       {
         id: 2,
         height: 80,
         width: 50,
-        length: 40
+        length: 40,
+        description: 'Média'
       },
       {
         id: 3,
         height: 50,
         width: 80,
-        length: 60
+        length: 60,
+        description: 'Grande'
       }
     ];
 
@@ -60,6 +63,10 @@ export class DeliveryService {
       maxLength = Math.max(maxLength, product.length);
     }
 
-    return { height: maxHeight, width: maxWidth, length: maxLength };
+    return {
+      height: maxHeight,
+      width: maxWidth,
+      length: maxLength
+    };
   }
 }
