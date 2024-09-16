@@ -6,16 +6,16 @@
     <div>
       <div class="sub-total">
         <span>Subtotal Price</span>
-        <span>{{ cartService.cartSubTotal() | currency : "USD" }}</span>
+        <span>{{ cartService.cartSubTotal() | currency : "PT-BR" }}</span>
       </div>
       <div class="sub-total">
         <span>Tax</span>
-        <span>{{ cartService.cartTax() | currency : "USD" }}</span>
+        <span>{{ cartService.cartTax() | currency : "PT-BR" }}</span>
       </div>
       <div class="sub-total">
         <span class="total">Total</span>
         <span class="total">{{
-          cartService.cartTotal() | currency : "USD"
+          cartService.cartTotal() | currency : "PT-BR"
         }}</span>
       </div>
     </div>

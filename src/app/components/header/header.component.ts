@@ -1,19 +1,16 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'rsm-header',
   templateUrl: './header.component.html',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, RouterLink, MatIconModule, AsyncPipe]
+  imports: [RouterModule, AsyncPipe]
 })
 export class HeaderComponent {
-  private cartService = inject(CartService);
+  private _cartService = inject(CartService);
 
-  cartCount = this.cartService.cartCount;
+  cartCount = this._cartService.cartCount;
 }

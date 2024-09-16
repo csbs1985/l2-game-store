@@ -1,91 +1,76 @@
-<mat-card>
-  <mat-toolbar color="primary">Product Details</mat-toolbar>
-  <mat-card-content>
-    <form [formGroup]="form" class="min-width">
-      <mat-form-field class="full-width">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" #name />
-        <mat-hint align="end">{{ name.value.length }} / 100</mat-hint>
-        @if (form.get('name')?.invalid) {
-        <mat-error>{{
-          formUtils.getErrorMessage(form, "name")
-          }}</mat-error>
-        }
-      </mat-form-field>
+<section class="max-w-screen-2xl m-auto pt-10">
+  <form [formGroup]="formProduct" (ngSubmit)="onSubmit()" class="flex flex-col gap-10 p-4">
+    <div class="flex flex-col gap-4">
+      <h2 class="text-4xl font-extrabold">Cadastrar novo jogo</h2>
 
-      <mat-form-field class="full-width">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description" #description />
-        <mat-hint align="end">{{ description.value.length }} / 100</mat-hint>
-        @if (form.get('description')?.invalid) {
-        <mat-error>{{
-          formUtils.getErrorMessage(form, "description")
-          }}</mat-error>
-        }
-      </mat-form-field>
+      <p>Todos os campos são obrigatórios</p>
+    </div>
 
-      <div class="row">
-        <mat-form-field class="column">
-          <mat-label>Price</mat-label>
-          <input matInput formControlName="price" type="number" />
-          @if (form.get('price')?.invalid) {
-          <mat-error>{{
-            formUtils.getErrorMessage(form, "price")
-            }}</mat-error>
-          }
-        </mat-form-field>
+    <div class="flex gap-8">
+      <div class="flex-1 flex flex-col gap-8">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" name="name" id="name" formControlName="name" placeholder="" required>
+        </div>
 
-        <mat-form-field class="column">
-          <mat-label>Status</mat-label>
-          <mat-select formControlName="status">
-            <mat-option value="">Default</mat-option>
-            <mat-option value="sale">Sale</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="form-group">
+          <label for="cover">Url da capa</label>
+          <input type="text" class="form-control" name="cover" id="cover" formControlName="cover" placeholder="https://"
+            required>
+        </div>
 
-        <mat-form-field class="column">
-          <mat-label>Discounted</mat-label>
-          <mat-select formControlName="discounted">
-            <mat-option value="">No</mat-option>
-            <mat-option value="discounted">Yes</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="form-group">
+          <label for="description">Descrição</label>
+          <input type="text" class="form-control" name="description" id="description" formControlName="description"
+            required>
+        </div>
 
-        <mat-form-field class="column">
-          <mat-label>Discount</mat-label>
-          <input matInput formControlName="discount" type="number" />
-          @if (form.get('discount')?.invalid) {
-          <mat-error>{{
-            formUtils.getErrorMessage(form, "discount")
-            }}</mat-error>
-          }
-        </mat-form-field>
+        <div class="form-group w-1/4">
+          <label for="price">Preço R$</label>
+          <input type="text" class="form-control" name="price" id="price" formControlName="price" placeholder="99.99"
+            required>
+        </div>
 
-        <mat-form-field class="column">
-          <mat-label>Image</mat-label>
-          <mat-select formControlName="image">
-            @for (image of images; track image) {
-            <mat-option [value]="image">
-              <img with="20" height="20" src="assets/images/{{ image }}.jpg" alt="" />
-              {{ image }}
-            </mat-option>
-            }
-          </mat-select>
-          @if (form.get('image')?.invalid) {
-          <mat-error>{{
-            formUtils.getErrorMessage(form, "image")
-            }}</mat-error>
-          }
-        </mat-form-field>
+        <div class="flex gap-4">
+          <div class="form-group w-1/4">
+            <label for="width">Caixa largura (cm)</label>
+            <input type="number" class="form-control" name="width" id="width" formControlName="width" required>
+          </div>
+
+          <div class="form-group w-1/4">
+            <label for="height">Altura (cm)</label>
+            <input type="number" class="form-control" name="height" id="height" formControlName="height" required>
+          </div>
+
+          <div class="form-group w-1/4">
+            <label for="length">Comprimento (cm)</label>
+            <input type="number" class="form-control" name="length" id="length" formControlName="length" required>
+          </div>
+        </div>
       </div>
-    </form>
-  </mat-card-content>
-  <mat-card-actions class="actions-center">
-    <button mat-raised-button color="primary" (click)="onSubmit()" type="submit">
-      Save
-    </button>
-    <button mat-raised-button (click)="onCancel()" class="btn-space" type="button">
-      Cancel
-    </button>
-  </mat-card-actions>
-</mat-card>
+
+      <div class="form-group">
+        <label for="price">Capa prévia</label>
+        @if (imagePreview) {
+        <img [src]="imagePreview" alt="cover" class="w-[360px] h-[480px] bg-skeleton rounded-xl cover">
+        } @else {
+        <div class="w-[360px] h-[480px] bg-skeleton rounded-xl"></div>
+        }
+      </div>
+    </div>
+
+    <div class="w-full flex justify-end items-center gap-4">
+      @if (msgSuccess) {
+      <p class="text-green-700">Produto criado com sucesso!</p>
+      }
+
+      @if (msgError) {
+      <p class="text-red-700">Erro ao criar produto!</p>
+      }
+
+      <button class="btn btn-secondary" (click)="cancelForm()">Cancelar</button>
+
+      <button class="btn btn-primary" (click)="onSubmit()">Cadastrar</button>
+    </div>
+  </form>
+</section>

@@ -1,96 +1,80 @@
-import { Location } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatOptionModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgIf } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/models/product.interface';
-import { FormUtilsService } from 'src/app/services/form-utils.service';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductService } from 'src/app/services/products.service';
 
 @Component({
-  selector: 'rsm-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
   standalone: true,
-  imports: [
-    MatCardModule,
-    MatToolbarModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatButtonModule,
-    MatSnackBarModule
-  ],
+  imports: [ReactiveFormsModule, NgIf],
+  templateUrl: './register.component.html'
 })
-export class RegisterComponent {
-  images: string[] = [];
-  form = new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(100),
-    ]),
-    description: new FormControl('', [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(100),
-    ]),
-    price: new FormControl(0, [
-      Validators.required,
-      Validators.min(1),
-      Validators.max(500),
-    ]),
-    image: new FormControl('', [Validators.required]),
-    status: new FormControl(''),
-    discounted: new FormControl('', [Validators.max(400)]),
-    discount: new FormControl(0),
-  });
+export class RegisterComponent implements OnInit {
+  private _formBuilder = inject(FormBuilder);
+  private _productService = inject(ProductService);
 
-  formUtils = inject(FormUtilsService);
-  private snackBar = inject(MatSnackBar);
-  private location = inject(Location);
-  private productsService = inject(ProductsService);
+  protected formProduct!: FormGroup;
 
-  constructor() {
-    this.generateImages();
+  private _product?: IProduct;
+
+  protected msgSuccess: boolean = false;
+  protected msgError: boolean = false;
+
+  ngOnInit(): void {
+    this._createForm();
   }
 
-  private generateImages() {
-    for (let num = 1; num <= 14; num++) {
-      this.images.push(`${num}`);
+  private _createForm(): void {
+    this.formProduct = this._formBuilder.group({
+      name: ['', Validators.required],
+      price: ['', Validators.required],
+      cover: ['', Validators.required],
+      description: ['', Validators.required],
+      width: ['0.135', Validators.required],
+      height: ['0.170', Validators.required],
+      length: ['0.14', Validators.required],
+    })
+  }
+
+  protected onSubmit(): void {
+    if (this.formProduct.valid) {
+      this.formatProduct();
     }
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.productsService.create(this.form.value as IProduct).subscribe({
-        next: () => this.onSuccess(),
-        error: () => this.onError(),
-      });
-    } else {
-      this.formUtils.validateAllFormFields(this.form);
+  private async formatProduct(): Promise<void> {
+    this._product = {
+      name: this.formProduct.get('name')?.value,
+      price: parseFloat(this.formProduct.get('price')?.value),
+      cover: this.formProduct.get('cover')?.value,
+      description: this.formProduct.get('description')?.value,
+      dimension: {
+        width: parseFloat(this.formProduct.get('width')?.value),
+        height: parseFloat(this.formProduct.get('height')?.value),
+        length: parseFloat(this.formProduct.get('length')?.value)
+      }
     }
+
+    await this.createProduct();
   }
 
-  private onSuccess() {
-    this.snackBar.open('Product saved successfully!', '', { duration: 5000 });
-    this.form.reset();
+  createProduct() {
+    this._productService.create(this._product as IProduct).subscribe({
+      next: () => this.msgSuccess = true,
+      error: () => this.msgError = true,
+    });
+
+    setInterval(() => {
+      this.cancelForm();
+    }, 3000);
   }
 
-  private onError() {
-    this.snackBar.open('Error saving product.', '', { duration: 10000 });
+  protected cancelForm(): void {
+    this.msgSuccess = this.msgError = false;
+    this.formProduct!.reset();
   }
 
-  onCancel() {
-    this.location.back();
+  get imagePreview(): string {
+    return this.formProduct.get('cover')?.value || "";
   }
 }

@@ -1,45 +1,25 @@
-<div class="parent">
-  @for (product of products$ | async; track product) {
-  <mat-card>
-    <div class="media-grid">
-      <figure class="product-figure">
-        @if (product.status === 'sale') {
-<div class="product-badge">
-          <span>Sale</span>
-        </div>
-}
-        <img
-          src="assets/images/{{ product.image }}.jpg"
-          height="245px"
-          alt="{{ product.name }}"
-        />
+<section class="max-w-screen-2xl m-auto">
+  <article class="flex gap-4 gap-y-16 p-4 flex-wrap justify-start">
+    @for (product of products$ | async; track product) {
+    <div class="flex flex-col">
+      <figure>
+        <img [src]="product.cover" class="aspect-[3:4] bg-cover bg-skeleton rounded-lg"
+          alt="{{ product.name }}" />
       </figure>
-    </div>
-    <mat-card-content class="pa-1">
-      <div class="product-details">
-        <div>
-          <p class="ma-0">{{ product.name }}</p>
-          <p class="ma-0 pa-0 text-md">{{ product.description }}</p>
+
+      <div class="flex flex-col gap-4 py-4">
+        <div class="flex flex-col gap-2">
+          <p class="text-sm text-gray-400">{{ product.description }}</p>
+          <p>{{ product.name }}</p>
         </div>
-        <div class="mat-text-primary text-xl">
-          @if (product.discounted === 'discounted') {
-<span
-            class="strikethrough mat-text-muted text-sm"
-           
-            >$ {{ product.discount }}</span
-          >
-}
-          <span> $ {{ product.price }}</span>
-        </div>
-        <button
-          mat-icon-button
-          color="accent"
-          (click)="addProductToCart(product)"
-        >
-          <mat-icon>add_shopping_cart</mat-icon>
+
+        <div class="text-xl"> {{ product.price | currency : "BRL"}} </div>
+
+        <button class="btn btn-primary w-fit" (click)="addProductToCart(product)">
+          Adicionar ao carrinho
         </button>
       </div>
-    </mat-card-content>
-  </mat-card>
-}
-</div>
+    </div>
+    }
+  </article>
+</section>

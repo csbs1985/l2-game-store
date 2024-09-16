@@ -1,17 +1,19 @@
-<header class="flex items-center gap-8 w-full p-4">
-  <p class="text-4xl font-extrabold uppercase cursor-pointer" [routerLink]="['/store']">SMGS</p>
+<header class="max-w-screen-2xl m-auto">
+  <div class="flex items-center gap-8 w-full p-4">
+    <p class="text-4xl font-extrabold uppercase cursor-pointer" [routerLink]="['/store']">SMGS</p>
 
-  <input type="text" placeholder="Pesquisar">
+    <input type="text" placeholder="Pesquisar">
 
-  <button [routerLink]="['/products']" routerLinkActive="router-active">Loja</button>
+    <button [routerLink]="['/products']" routerLinkActive="router-active">Loja</button>
 
-  <button [routerLink]="['/register']" routerLinkActive="router-active">Cadastro</button>
+    <button [routerLink]="['/register']" routerLinkActive="router-active">Cadastro</button>
 
-  <button [routerLink]="['/cart']" routerLinkActive="router-active" class="flex gap-2">
-    Carrinho
+    <button [routerLink]="['/cart']" routerLinkActive="router-active" class="flex gap-2">
+      Carrinho
 
-    @if (cartCount(); as count) {
-    <span class="rounded-full text-red-700 font-bold">{{ count > 0 ? count : "" }}</span>
-    }
-  </button>
+      @if (cartCount(); as count) {
+      <span class="rounded-full text-red-700 font-bold">{{ count > 0 ? count : "" }}</span>
+      }
+    </button>
+  </div>
 </header>

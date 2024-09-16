@@ -1,10 +1,10 @@
+import { IDimension } from "./dimension.interface";
+
 export interface IProduct {
-  id: string;
-  price: number;
-  status: string;
-  discounted: string;
-  discount: number;
+  id?: string;
   name: string;
+  price: number;
+  cover: string;
   description: string;
-  image: string;
+  dimension: IDimension;
 }
