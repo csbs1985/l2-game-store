@@ -1,0 +1,41 @@
+<!-- <header class="flex items-center gap-8 w-full p-4">
+  <p class="text-4xl font-extrabold uppercase cursor-pointer" [routerLink]="['/store']">SMGS</p>
+
+  <div class="branding">Angular Coffee Shop</div>
+
+  <span class="example-spacer"></span>
+
+  <button mat-icon-button [routerLink]="['/products/new']">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <button mat-icon-button [routerLink]="['/cart']">
+    <mat-icon>shopping_cart</mat-icon>
+    @if (cartCount(); as count) {
+    <span class="notification-label">{{
+      count > 0 ? count : ""
+      }}</span>
+    }
+  </button>
+</header> -->
+
+
+<header class="flex items-center gap-8 w-full p-4">
+  <p class="text-4xl font-extrabold uppercase cursor-pointer" [routerLink]="['/store']">SMGS</p>
+
+  <input type="text" placeholder="Pesquisar">
+
+  <button [routerLink]="['/store']" routerLinkActive="router-active">Loja</button>
+
+  <button [routerLink]="['/register']" routerLinkActive="router-active">Cadastro</button>
+
+  <button [routerLink]="['/cart']" routerLinkActive="router-active">
+    Carrinho
+
+    @if (cartCount(); as count) {
+    <span class="notification-label">{{
+      count > 0 ? count : ""
+      }}</span>
+    }
+  </button>
+</header>

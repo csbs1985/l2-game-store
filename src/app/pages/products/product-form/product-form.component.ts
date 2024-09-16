@@ -9,9 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { IProduct } from '../../models/product.interface';
-import { FormUtilsService } from '../../services/form-utils.service';
-import { ProductsService } from '../../services/products.service';
+import { IProduct } from 'src/app/models/product.interface';
+import { FormUtilsService } from 'src/app/services/form-utils.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'rsm-product-form',
@@ -28,7 +28,7 @@ import { ProductsService } from '../../services/products.service';
     MatOptionModule,
     MatButtonModule,
     MatSnackBarModule
-],
+  ],
 })
 export class ProductFormComponent {
   images: string[] = [];

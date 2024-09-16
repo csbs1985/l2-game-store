@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
-
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'rsm-cart-total-summary',

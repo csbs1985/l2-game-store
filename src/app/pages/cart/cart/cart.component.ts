@@ -10,6 +10,4 @@ import { CartTotalSummaryComponent } from '../cart-total-summary/cart-total-summ
     standalone: true,
     imports: [MatToolbarModule, CartListComponent, CartTotalSummaryComponent]
 })
-export class CartComponent {
-
-}
+export class CartComponent { }

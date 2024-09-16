@@ -1,8 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-
-import { CartService } from '../../services/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 
 @Component({

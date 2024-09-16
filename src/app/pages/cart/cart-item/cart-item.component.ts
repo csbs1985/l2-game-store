@@ -5,8 +5,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { ICartItem } from '../../models/cart-item.interface';
-import { CartService } from '../../services/cart.service';
+import { ICartItem } from 'src/app/models/cart-item.interface';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'rsm-cart-item',
