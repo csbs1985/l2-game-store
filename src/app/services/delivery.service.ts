@@ -1,12 +1,15 @@
-import { Injectable } from "@angular/core";
+import { computed, Injectable } from "@angular/core";
 import { IBox } from "../models/box.interface";
+import { IProduct } from "../models/product.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeliveryService {
+  deliveryBox = computed(() => { return 'Pequena' });
+  deliveryQtd = computed(() => { return 1 });
 
-  findIdealBox(products: any[]) {
+  findIdealBox(products: IProduct[]) {
     const minimumBoxSize = this.calculateMinimumBoxSize(products);
     const boxes: IBox[] = [
       {
@@ -52,15 +55,15 @@ export class DeliveryService {
     return idealBox;
   }
 
-  calculateMinimumBoxSize(products: any[]) {
+  calculateMinimumBoxSize(products: IProduct[]) {
     let maxHeight = 0;
     let maxWidth = 0;
     let maxLength = 0;
 
     for (const product of products) {
-      maxHeight = Math.max(maxHeight, product.height);
-      maxWidth = Math.max(maxWidth, product.width);
-      maxLength = Math.max(maxLength, product.length);
+      maxHeight = Math.max(maxHeight, product.dimension.height);
+      maxWidth = Math.max(maxWidth, product.dimension.width);
+      maxLength = Math.max(maxLength, product.dimension.length);
     }
 
     return {
