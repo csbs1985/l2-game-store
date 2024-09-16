@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "rsm",
+      "prefix": "l2",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser-esbuild",

@@ -3,10 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 
 @Component({
-  selector: 'rsm-root',
+  selector: 'l2-root',
   styles: [],
   template: `
-    <rsm-header></rsm-header>
+    <l2-header></l2-header>
 
     <router-outlet></router-outlet>
     `,

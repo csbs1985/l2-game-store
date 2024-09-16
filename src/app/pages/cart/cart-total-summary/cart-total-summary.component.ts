@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
-  selector: 'rsm-cart-total-summary',
+  selector: 'l2-cart-total-summary',
   templateUrl: './cart-total-summary.component.html',
   standalone: true,
   imports: [CurrencyPipe]

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 
 @Component({
-  selector: 'rsm-header',
+  selector: 'l2-header',
   templateUrl: './header.component.html',
   standalone: true,
   imports: [RouterModule, AsyncPipe]

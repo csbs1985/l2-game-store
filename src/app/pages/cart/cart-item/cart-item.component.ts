@@ -4,7 +4,7 @@ import { ICartItem } from 'src/app/models/cart-item.interface';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
-  selector: 'rsm-cart-item',
+  selector: 'l2-cart-item',
   templateUrl: './cart-item.component.html',
   standalone: true,
   imports: [CurrencyPipe]

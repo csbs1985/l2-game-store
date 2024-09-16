@@ -5,7 +5,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/products.service';
 
 @Component({
-  selector: 'rsm-products',
+  selector: 'l2-products',
   templateUrl: './products.component.html',
   standalone: true,
   imports: [AsyncPipe, CurrencyPipe, NgIf]
