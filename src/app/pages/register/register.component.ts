@@ -30,9 +30,9 @@ export class RegisterComponent implements OnInit {
       price: ['', Validators.required],
       cover: ['', Validators.required],
       description: ['', Validators.required],
-      width: ['0.135', Validators.required],
-      height: ['0.170', Validators.required],
-      length: ['0.14', Validators.required],
+      width: [0.135, Validators.required],
+      height: [0.170, Validators.required],
+      length: [0.14, Validators.required],
     })
   }
 

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { DeliveryService } from 'src/app/services/delivery.service';
 
 @Component({
   selector: 'l2-cart-delivery',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   templateUrl: './cart-delivery.component.html'
 })
 export class CartDeliveryComponent {
-
+  protected _deliveryService = inject(DeliveryService);
 }

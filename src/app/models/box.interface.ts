@@ -2,5 +2,6 @@ export interface IBox {
   id: number,
   width: number,
   height: number,
-  length: number
+  length: number,
+  description: string,
 }
