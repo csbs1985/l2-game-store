@@ -1,8 +1,15 @@
 import { Routes } from '@angular/router';
 
 export const APP_ROUTES: Routes = [
-  { path: '', redirectTo: 'store', pathMatch: 'full' },
-  { path: 'store', loadComponent: () => import('./pages/store/store.component').then(c => c.StoreComponent) },
-  { path: 'register', loadComponent: () => import('./pages/register/register.component').then(c => c.RegisterComponent) },
-  { path: '**', redirectTo: 'store' }
+  {
+    path: '', pathMatch: 'full', redirectTo: 'products'
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./products/products.routes').then(r => r.PRODUCT_ROUTES)
+  },
+  {
+    path: 'cart',
+    loadComponent: () => import('./cart/cart/cart.component').then(c => c.CartComponent)
+  }
 ];
