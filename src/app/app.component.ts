@@ -13,6 +13,4 @@ import { HeaderComponent } from './components/header/header.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent]
 })
-export class AppComponent {
-  title = 'angular-shop';
-}
+export class AppComponent { }
