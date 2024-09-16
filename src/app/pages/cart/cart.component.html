@@ -3,10 +3,6 @@
     <h2 class="text-4xl font-extrabold">Carrinho de produtos</h2>
   </div>
 
-  @if(cartLength > 0){
-  <p class="ml-4">Nenhum item selecionado</p>
-  }
-  @else {
   <div class="px-4 flex gap-8">
     <div class="flex-1">
       <l2-cart-list></l2-cart-list>
@@ -18,5 +14,4 @@
       <l2-cart-total-summary></l2-cart-total-summary>
     </div>
   </div>
-  }
 </section>

@@ -16,5 +16,7 @@
     <span class="total">{{ _cartService.cartTotal() | currency : "BRL" }}</span>
   </div>
 
+  @if(_cartService.cartTotal() != 0){
   <button class="btn btn-primary w-fit"> Comprar </button>
+  }
 </section>

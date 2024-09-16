@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -6,9 +6,8 @@ import { CartService } from 'src/app/services/cart.service';
   selector: 'l2-cart-total-summary',
   templateUrl: './cart-total-summary.component.html',
   standalone: true,
-  imports: [CurrencyPipe]
+  imports: [CurrencyPipe, NgIf]
 })
 export class CartTotalSummaryComponent {
-
   protected _cartService = inject(CartService);
 }
