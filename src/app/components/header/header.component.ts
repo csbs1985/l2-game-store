@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service';
@@ -7,7 +6,7 @@ import { CartService } from '../../services/cart.service';
   selector: 'l2-header',
   templateUrl: './header.component.html',
   standalone: true,
-  imports: [RouterModule, AsyncPipe]
+  imports: [RouterModule]
 })
 export class HeaderComponent {
   private _cartService = inject(CartService);
