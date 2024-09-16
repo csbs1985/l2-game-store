@@ -9,13 +9,13 @@ import { ProductsService } from 'src/app/services/products.service';
 
 
 @Component({
-  selector: 'rsm-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss'],
+  selector: 'rsm-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss'],
   standalone: true,
   imports: [MatCardModule, MatButtonModule, MatIconModule, AsyncPipe]
 })
-export class ProductsListComponent {
+export class ProductsComponent {
   private service = inject(ProductsService);
   private cartService = inject(CartService);
 

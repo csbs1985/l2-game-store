@@ -14,9 +14,9 @@ import { FormUtilsService } from 'src/app/services/form-utils.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
-  selector: 'rsm-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss'],
+  selector: 'rsm-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
   standalone: true,
   imports: [
     MatCardModule,
@@ -30,7 +30,7 @@ import { ProductsService } from 'src/app/services/products.service';
     MatSnackBarModule
   ],
 })
-export class ProductFormComponent {
+export class RegisterComponent {
   images: string[] = [];
   form = new FormGroup({
     id: new FormControl(''),

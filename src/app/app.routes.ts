@@ -6,10 +6,18 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'products',
-    loadChildren: () => import('./pages/products/products.routes').then(r => r.PRODUCT_ROUTES)
+    loadComponent: () => import('./pages/products/products.component').then(c => c.ProductsComponent)
   },
   {
     path: 'cart',
     loadComponent: () => import('./pages/cart/cart/cart.component').then(c => c.CartComponent)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.component').then(c => c.RegisterComponent)
+  },
+  {
+    path: '**',
+    redirectTo: 'products'
   }
 ];
