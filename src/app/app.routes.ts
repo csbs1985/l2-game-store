@@ -10,7 +10,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'cart',
-    loadComponent: () => import('./pages/cart/cart/cart.component').then(c => c.CartComponent)
+    loadComponent: () => import('./pages/cart/cart.component').then(c => c.CartComponent)
   },
   {
     path: 'register',

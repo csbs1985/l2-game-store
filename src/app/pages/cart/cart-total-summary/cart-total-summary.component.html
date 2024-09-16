@@ -1,28 +1,20 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title class="text-xl">CART TOTAL</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <div>
-      <div class="sub-total">
-        <span>Subtotal Price</span>
-        <span>{{ cartService.cartSubTotal() | currency : "PT-BR" }}</span>
-      </div>
-      <div class="sub-total">
-        <span>Tax</span>
-        <span>{{ cartService.cartTax() | currency : "PT-BR" }}</span>
-      </div>
-      <div class="sub-total">
-        <span class="total">Total</span>
-        <span class="total">{{
-          cartService.cartTotal() | currency : "PT-BR"
-        }}</span>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-actions class="checkout"
-    ><button mat-raised-button color="primary">
-      Checkout
-    </button></mat-card-actions
-  >
-</mat-card>
+<section class="flex flex-col gap-4">
+  <p class="text-2xl font-bold">Total</p>
+
+  <div class="sub-total">
+    <span>Subtotal </span>
+    <span>{{ _cartService.cartSubTotal() | currency : "BRL" }}</span>
+  </div>
+
+  <div class="sub-total">
+    <span>Taxas </span>
+    <span>{{ _cartService.cartTax() | currency : "BRL" }}</span>
+  </div>
+
+  <div class="sub-total">
+    <span class="total">Total </span>
+    <span class="total">{{ _cartService.cartTotal() | currency : "BRL" }}</span>
+  </div>
+
+  <button class="btn btn-primary w-fit"> Comprar </button>
+</section>

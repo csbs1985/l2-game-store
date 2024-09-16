@@ -1,15 +1,13 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 
 @Component({
   selector: 'rsm-cart-list',
   templateUrl: './cart-list.component.html',
-  styleUrls: ['./cart-list.component.scss'],
   standalone: true,
-  imports: [MatCardModule, CartItemComponent, AsyncPipe]
+  imports: [CartItemComponent, AsyncPipe]
 })
 export class CartListComponent {
 
