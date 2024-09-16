@@ -10,17 +10,9 @@ import { CartService } from 'src/app/services/cart.service';
   imports: [CurrencyPipe]
 })
 export class CartItemComponent {
-
   @Input({ required: true, alias: 'item' }) cartItem !: ICartItem;
 
-  quantityOptions = [1, 2, 3, 4, 5];
-
   private cartService = inject(CartService);
-
-  onQuantityChange(quantity: number, cartItem: ICartItem) {
-    cartItem.quantity = quantity;
-    this.cartService.updateCartQuantity(cartItem);
-  }
 
   onRemove(): void {
     this.cartService.removeProduct(this.cartItem.product);

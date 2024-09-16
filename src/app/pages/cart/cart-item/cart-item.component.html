@@ -1,36 +1,21 @@
-<div class="parent">
-  <div class="product-details">
-    <img src="assets/images/{{ cartItem.product.cover }}.jpg" height="100px" alt="{{ cartItem.product.name }}" />
-    <div>
-      <p class="ma-0">{{ cartItem.product.name }}</p>
-      <p class="ma-0 pa-0 text-md" style="padding-top: 5px">
-        {{ cartItem.product.description }}
-      </p>
+<div class="flex flex-col gap-4">
+  <div class="flex gap-8">
+    <img [src]="cartItem.product.cover" class="h-60 aspect-[3/4]" alt="{{ cartItem.product.name }}" />
+
+    <div class="flex flex-col justify-between gap-4">
+      <div class="flex flex-col gap-4">
+        <p class="font-bold text-lg"> {{ cartItem.product.name }} </p>
+
+        <p class=""> {{ cartItem.product.description }} </p>
+
+        <p class=""> Valor unitário {{ cartItem.product.price | currency : "BRL" }} </p>
+
+        <p class=""> {{ cartItem.quantity }} unidade(s) </p>
+
+        <p> total de {{ cartItem.product.price * cartItem.quantity | currency : "BRL" }}</p>
+      </div>
+
+      <button class="btn btn-secondary w-fit" (click)="onRemove()"> Remover </button>
     </div>
-  </div>
-  <div>
-    <!-- <mat-form-field>
-      <mat-label>Quantity</mat-label>
-      <mat-select [value]="cartItem.quantity" (selectionChange)="onQuantityChange($event.value, cartItem)">
-        @for (quantity of quantityOptions; track quantity) {
-        <mat-option [value]="quantity">{{ quantity }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field> -->
-  </div>
-  <div>
-    <div>
-      <p class="ma-0" style="font-weight: bold">
-        {{ cartItem.product.price * cartItem.quantity | currency : "PT-BR" }}
-      </p>
-      <p class="ma-0 pa-0 text-md" style="padding-top: 5px">
-        {{ cartItem.product.price | currency : "PT-BR" }} each
-      </p>
-    </div>
-  </div>
-  <div>
-    <button mat-mini-fab aria-label="Remove Product From Cart" color="warn" (click)="onRemove()">
-      delete
-    </button>
   </div>
 </div>
